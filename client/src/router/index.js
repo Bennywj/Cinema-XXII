@@ -4,7 +4,10 @@ import Dashboard from '@/views/Dashboard'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
 import Genre from '@/views/admin/Genre'
+
+// form ui
 import AddGenre from '@/views/admin/form/AddGenre'
+import AddSeat from '@/views/admin/form/AddSeat'
 
 Vue.use(Router)
 
@@ -26,14 +29,19 @@ export default new Router({
       component: Register
     },
     {
-      path: '/genre',
+      path: '/admin/genre',
       name: 'genre',
       component: Genre
     },
     {
-      path: '/addGenre',
+      path: '/admin/genre/addGenre',
       name: 'addGenre',
       component: AddGenre
+    },
+    {
+      path: '/admin/seat/addSeat',
+      name: 'addSeat',
+      component: AddSeat
     }
   ]
 })

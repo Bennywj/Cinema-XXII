@@ -10,7 +10,7 @@
                   <h3>Genre</h3>
                 </b-col>
                 <b-col align="right">
-                  <b-button variant="success" @click="navigateTo('addGenre')"><icon name="plus-circle" class="mr-3"></icon>Add Genre</b-button>
+                  <b-button variant="success" :to="{ name: 'addGenre'}"><icon name="plus-circle" class="mr-3"></icon>Add Genre</b-button>
                 </b-col>
               </b-row>
               <b-table bordered striped hover :items="items" :fields="fields"></b-table>

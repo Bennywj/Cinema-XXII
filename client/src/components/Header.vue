@@ -8,18 +8,18 @@
     <b-navbar toggleable="md" style="background-color:#C25219">
         <b-collapse is-nav id="nav_collapse">
           <b-navbar-nav>
-            <b-nav-item href="#" @click="navigateTo('/')" actives> HOME </b-nav-item>
+            <b-nav-item href="#" :to="{ name: 'dashboard'}" actives> HOME </b-nav-item>
             <b-nav-item href="#">MOVIES</b-nav-item>
             <b-nav-item href="#">SCHEDULES</b-nav-item>
             <b-nav-item href="#">CINEMAS</b-nav-item>
           </b-navbar-nav>
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-            <b-nav-item href="#" @click="navigateTo('login')" v-if="!$store.state.isUserLoggedIn">
+            <b-nav-item href="#" :to="{ name: 'login'}" v-if="!$store.state.isUserLoggedIn">
               <icon name="sign-in" class="mr-1"></icon>
               Login
             </b-nav-item>
-            <b-nav-item href="#" @click="navigateTo('register')" v-if="!$store.state.isUserLoggedIn">
+            <b-nav-item href="#" :to="{ name: 'register'}" v-if="!$store.state.isUserLoggedIn">
               <icon name="user-plus" class="mr-1"></icon>
               Register
             </b-nav-item>

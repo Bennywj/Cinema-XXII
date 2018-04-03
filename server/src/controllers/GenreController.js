@@ -28,7 +28,7 @@ module.exports = {
       const allGenre = await Genre.findAll()
       returnJsonResponse(res,{genres:allGenre})
     } catch(err) {
-      returnJsonError(res,'missing field genre_name.',400)
+      returnJsonError(res,'server error.',400)
     }
   }
 }
