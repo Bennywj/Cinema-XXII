@@ -20,5 +20,12 @@ export default {
   },
   getSeat () {
     return Api().get('seat')
+  },
+  // theater
+  generateTheater () {
+    return Api().post('theater/generate')
+  },
+  getTheater () {
+    return Api().get('theater')
   }
 }

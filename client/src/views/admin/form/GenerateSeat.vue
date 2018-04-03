@@ -27,7 +27,7 @@
 import Sidebar from '@/components/Sidebar.vue'
 import AuthenthicationService from '@/services/AuthenticationService'
 export default {
-  name: 'AddSeat',
+  name: 'GenerateSeat',
   components: {
     Sidebar
   },
@@ -41,7 +41,7 @@ export default {
     async generateSeat () {
       try {
         await AuthenthicationService.generateSeat()
-        this.seatStatus = 'Seats have been already generated'
+        this.seatStatus = 'Seats have been generated'
         this.seatExist = true
       } catch (err) {
       }
@@ -51,10 +51,10 @@ export default {
     const seatObj = await AuthenthicationService.getSeat()
     if (seatObj.data.seats.length > 0) {
       this.seatExist = true
-      this.seatStatus = 'Seats have been already generated'
+      this.seatStatus = 'Seats have been generated'
     } else {
       this.seatExist = false
-      this.seatStatus = 'Seats haven\'t been already generated'
+      this.seatStatus = 'Seats haven\'t been generated'
     }
   }
 }

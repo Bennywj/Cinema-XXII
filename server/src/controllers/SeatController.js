@@ -4,7 +4,7 @@ const { returnJsonResponse } = require('../controllers/GlobalController');
 
 
 module.exports = {
-  async addSeat (req, res) {
+  async generateSeat (req, res) {
     try {
       var body = [];
       for(var i=0;i<5;i++) {
@@ -14,7 +14,7 @@ module.exports = {
       }
       returnJsonResponse(res,{message:'50 Seats are sucessfully added'})
     } catch(err) {
-      returnJsonError(res,'missing field genre_name.',400)
+      returnJsonError(res,'server error',500)
     }
   },
   async getSeat (req, res) {
@@ -22,7 +22,7 @@ module.exports = {
       const allSeat = await Seat.findAll()
       returnJsonResponse(res,{seats:allSeat})
     } catch(err) {
-      returnJsonError(res,'missing field genre_name.',400)
+      returnJsonError(res,'server error',500)
     }
   }
 }

@@ -7,7 +7,8 @@ import Genre from '@/views/admin/Genre'
 
 // form ui
 import AddGenre from '@/views/admin/form/AddGenre'
-import AddSeat from '@/views/admin/form/AddSeat'
+import GenerateSeat from '@/views/admin/form/GenerateSeat'
+import GenerateTheater from '@/views/admin/form/GenerateTheater'
 
 Vue.use(Router)
 
@@ -29,6 +30,10 @@ export default new Router({
       component: Register
     },
     {
+      path: '/admin',
+      redirect: '/admin/genre'
+    },
+    {
       path: '/admin/genre',
       name: 'genre',
       component: Genre
@@ -39,9 +44,14 @@ export default new Router({
       component: AddGenre
     },
     {
-      path: '/admin/seat/addSeat',
-      name: 'addSeat',
-      component: AddSeat
+      path: '/admin/seat/generateSeat',
+      name: 'generateSeat',
+      component: GenerateSeat
+    },
+    {
+      path: '/admin/theater/generateTheater',
+      name: 'generateTheater',
+      component: GenerateTheater
     }
   ]
 })

@@ -63,7 +63,7 @@ export default {
         await AuthenthicationService.addGenre(body)
         this.error = null
         this.showError = false
-        this.success = this.name + 'is successfully added.'
+        this.success = this.name + ' is successfully added.'
         this.showSuccess = true
         this.name = ''
       } catch (err) {
