@@ -41,7 +41,7 @@
       <b-row>
           <b-col>
               <b-list-group>
-                <b-list-group-item v-for="(genre,index) in genres.slice(0,5) " :key="genre">
+                <b-list-group-item v-for="(genre,index) in genres.slice(0,5) " :key="genre.id">
                   <b-row>
                     <b-col cols="1">
                       <b-badge>{{ index+1 }}</b-badge>

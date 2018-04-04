@@ -11,7 +11,6 @@ app.use(cors())
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 
-
 routes((app))
 
 models.sequelize.sync()

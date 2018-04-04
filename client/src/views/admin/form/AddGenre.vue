@@ -14,17 +14,18 @@
           <b-col cols="2">
               <Sidebar/>
           </b-col>
-          <b-col>
-            <b-card title="Add Genre"
+          <b-col align="center">
+            <b-card title="New Genre"
                   tag="article"
-                  style="max-width: 20rem;">
+                  style="max-width: 40rem;"
+                  align="left">
               <b-form @submit="addGenre">
                 <b-container fluid>
-                  <b-row>
+                  <b-row class="mt-4">
                     <b-col sm="3"><label :for="name">Name</label></b-col>
                     <b-col sm="9"><b-form-input :id="name" type="text" v-model="name" required></b-form-input></b-col>
                   </b-row>
-                  <b-row class="pt-4">
+                  <b-row class="pt-4" align="right">
                     <b-col>
                       <b-button type="submit" variant="primary">Submit</b-button>
                     </b-col>

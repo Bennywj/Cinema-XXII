@@ -4,9 +4,11 @@ import Dashboard from '@/views/Dashboard'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
 import Genre from '@/views/admin/Genre'
+import Plaza from '@/views/admin/Plaza'
 
 // form ui
 import AddGenre from '@/views/admin/form/AddGenre'
+import AddPlaza from '@/views/admin/form/AddPlaza'
 import GenerateSeat from '@/views/admin/form/GenerateSeat'
 import GenerateTheater from '@/views/admin/form/GenerateTheater'
 
@@ -29,6 +31,7 @@ export default new Router({
       name: 'register',
       component: Register
     },
+    // genre url
     {
       path: '/admin',
       redirect: '/admin/genre'
@@ -39,10 +42,11 @@ export default new Router({
       component: Genre
     },
     {
-      path: '/admin/genre/addGenre',
+      path: '/admin/genre/add',
       name: 'addGenre',
       component: AddGenre
     },
+    // seat url
     {
       path: '/admin/seat/generateSeat',
       name: 'generateSeat',
@@ -52,6 +56,17 @@ export default new Router({
       path: '/admin/theater/generateTheater',
       name: 'generateTheater',
       component: GenerateTheater
+    },
+    // plaza url
+    {
+      path: '/admin/plaza',
+      name: 'plaza',
+      component: Plaza
+    },
+    {
+      path: '/admin/plaza/add',
+      name: 'addPlaza',
+      component: AddPlaza
     }
   ]
 })

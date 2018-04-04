@@ -7,7 +7,7 @@
           <b-col>
               <b-row class="pb-3">
                 <b-col>
-                  <h3>Genre</h3>
+                  <h3>Genres</h3>
                 </b-col>
                 <b-col align="right">
                   <b-button variant="success" :to="{ name: 'addGenre'}"><icon name="plus-circle" class="mr-3"></icon>Add Genre</b-button>

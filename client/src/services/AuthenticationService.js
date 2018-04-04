@@ -27,5 +27,26 @@ export default {
   },
   getTheater () {
     return Api().get('theater')
+  },
+  // Plaza
+  addPlaza (credentials) {
+    return Api().post('plaza/add', credentials)
+  },
+  getPlaza () {
+    return Api().get('plaza')
+  },
+  // profile
+  addProfile (id, credentials) {
+    return Api().post('profile/' + id, credentials, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+  },
+  getProfile (id) {
+    return Api().get('profile/' + id, {
+      responseType: 'arraybuffer'
+    })
+      .then(response => Buffer.from(response.data, 'binary').toString('base64'))
   }
 }
