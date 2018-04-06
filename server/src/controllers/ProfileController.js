@@ -17,7 +17,10 @@ var upload = multer({ storage: storage }).single('profileImage')
 module.exports = {
   
   async getProfile(req,res) {
-    const { id } = req.params;
+    const { id } = req.query;
+    if(!id) {
+      returnJsonError(res,'missing query id',403)
+    }
     const userExist = await Profile_Picture.findOne({
       where: {
         username:id
@@ -32,7 +35,10 @@ module.exports = {
   },
   
   async uploadProfile (req, res) {
-    const { id } = req.params;
+    const { id } = req.query;
+    if(!id) {
+      returnJsonError(res,'missing query id',403)
+    }
     const userExist = await Profile_Picture.findOne({
       where: {
         username:id

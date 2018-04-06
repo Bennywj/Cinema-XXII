@@ -5,6 +5,7 @@ const SeatController = require('./controllers/SeatController')
 const TheaterController = require('./controllers/TheaterController')
 const ProfileController = require('./controllers/ProfileController')
 const PlazaController = require('./controllers/PlazaController')
+const MovieController = require('./controllers/MovieController')
 
 module.exports = (app) => {
   app.get('/', (req, res) => {
@@ -31,13 +32,18 @@ module.exports = (app) => {
   app.post('/theater/generate',
     TheaterController.generateTheater)
   // profile picture
-  app.get('/profile/:id',
+  app.get('/profile?:id',
     ProfileController.getProfile)
-  app.post('/profile/:id',
+  app.post('/profile?:id',
     ProfileController.uploadProfile)
   // plaza
   app.get('/plaza',
     PlazaController.getPlaza)
   app.post('/plaza/add',
-    PlazaController.addPlaza)
+    PlazaController.addPlaza),
+  // movies
+  app.get('/movie',
+    MovieController.getMovie)
+  app.post('/movie/add',
+    MovieController.addMovie)
 }

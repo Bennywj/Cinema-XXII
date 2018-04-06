@@ -36,7 +36,7 @@
                   <b-row class="mb-3">
                     <b-col sm="3"><label :for="file">Image</label></b-col>
                     <b-col sm="9">
-                      <b-form-file v-model="file" :state="Boolean(file)" placeholder="Choose a image..."></b-form-file>
+                      <b-form-file v-model="file" :state="Boolean(file)" placeholder="Choose a image..." required></b-form-file>
                     </b-col>
                   </b-row>
                   <b-row class="pt-4" align="right">

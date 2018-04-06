@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => 
   sequelize.define('Order', {
-    booking_id: {
+    order_id: {
       type: DataTypes.STRING,
       allowNull: false
     },

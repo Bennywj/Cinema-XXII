@@ -58,7 +58,7 @@ export default {
   methods: {
     async addGenre () {
       var body = {
-        genre_name: this.name
+        name: this.name
       }
       try {
         await AuthenthicationService.addGenre(body)

@@ -35,16 +35,23 @@ export default {
   getPlaza () {
     return Api().get('plaza')
   },
+  // Movie
+  getMovie () {
+    return Api().get('movie')
+  },
+  addMovie (credentials) {
+    return Api().post('movie/add', credentials)
+  },
   // profile
   addProfile (id, credentials) {
-    return Api().post('profile/' + id, credentials, {
+    return Api().post('profile?id=' + id, credentials, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     })
   },
   getProfile (id) {
-    return Api().get('profile/' + id, {
+    return Api().get('profile?id=' + id, {
       responseType: 'arraybuffer'
     })
       .then(response => Buffer.from(response.data, 'binary').toString('base64'))

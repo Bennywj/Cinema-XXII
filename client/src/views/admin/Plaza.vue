@@ -18,8 +18,7 @@
             v-for="plaza in plazas " :key="plaza.id">
           <b-row>
             <b-col>
-              <img :src="plaza.image" style="height:300px;width:500px" v-if="plaza.image"/>
-              <img src="../../img/emptyPlaza.png" style="height:300px;width:500px" v-if="!plaza.image"/>
+              <img :src="plaza.image" style="height:300px;width:100%" v-if="plaza.image"/>
             </b-col>
             <b-col>
               <h4><b>{{plaza.name}}</b></h4>

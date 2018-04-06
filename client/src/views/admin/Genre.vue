@@ -45,7 +45,7 @@ export default {
     for (var i = 0; i < genreData.length; i++) {
       this.items.push({
         no: i + 1,
-        name: genreData[i].genre_name
+        name: genreData[i].name
       })
     }
   }

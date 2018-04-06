@@ -5,10 +5,12 @@ import Login from '@/views/Login'
 import Register from '@/views/Register'
 import Genre from '@/views/admin/Genre'
 import Plaza from '@/views/admin/Plaza'
+import Movie from '@/views/admin/Movie'
 
 // form ui
 import AddGenre from '@/views/admin/form/AddGenre'
 import AddPlaza from '@/views/admin/form/AddPlaza'
+import AddMovie from '@/views/admin/form/AddMovie'
 import GenerateSeat from '@/views/admin/form/GenerateSeat'
 import GenerateTheater from '@/views/admin/form/GenerateTheater'
 
@@ -38,7 +40,7 @@ export default new Router({
     },
     {
       path: '/admin/genre',
-      name: 'genre',
+      name: 'adminGenre',
       component: Genre
     },
     {
@@ -60,13 +62,24 @@ export default new Router({
     // plaza url
     {
       path: '/admin/plaza',
-      name: 'plaza',
+      name: 'adminPlaza',
       component: Plaza
     },
     {
       path: '/admin/plaza/add',
       name: 'addPlaza',
       component: AddPlaza
+    },
+    // movie url
+    {
+      path: '/admin/movie',
+      name: 'adminMovie',
+      component: Movie
+    },
+    {
+      path: '/admin/movie/add',
+      name: 'addMovie',
+      component: AddMovie
     }
   ]
 })
