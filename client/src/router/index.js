@@ -6,11 +6,13 @@ import Register from '@/views/Register'
 import Genre from '@/views/admin/Genre'
 import Plaza from '@/views/admin/Plaza'
 import Movie from '@/views/admin/Movie'
+import Schedule from '@/views/admin/Schedule'
 
 // form ui
 import AddGenre from '@/views/admin/form/AddGenre'
 import AddPlaza from '@/views/admin/form/AddPlaza'
 import AddMovie from '@/views/admin/form/AddMovie'
+import AddSchedule from '@/views/admin/form/AddSchedule'
 import GenerateSeat from '@/views/admin/form/GenerateSeat'
 import GenerateTheater from '@/views/admin/form/GenerateTheater'
 
@@ -80,6 +82,17 @@ export default new Router({
       path: '/admin/movie/add',
       name: 'addMovie',
       component: AddMovie
+    },
+    // Schedule url
+    {
+      path: '/admin/schedule',
+      name: 'adminSchedule',
+      component: Schedule
+    },
+    {
+      path: '/admin/schedule/add',
+      name: 'addSchedule',
+      component: AddSchedule
     }
   ]
 })

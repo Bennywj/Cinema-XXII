@@ -118,7 +118,6 @@ export default {
         producer: this.producer,
         description: this.description
       }
-      console.log(body)
       try {
         await AuthenthicationService.addMovie(body)
         if (this.file != null) {
@@ -140,7 +139,6 @@ export default {
         this.description = ''
         this.file = null
       } catch (err) {
-        console.log(err)
         this.error = err.response.data.error
         this.showError = true
         this.success = null

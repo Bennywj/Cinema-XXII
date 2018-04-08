@@ -55,5 +55,12 @@ export default {
       responseType: 'arraybuffer'
     })
       .then(response => Buffer.from(response.data, 'binary').toString('base64'))
+  },
+  // Schedules
+  getScheduleByPlaza (plazaId, date) {
+    return Api().get('schedule?plaza_id=' + plazaId + '&date=' + date)
+  },
+  addSchedule (credentials) {
+    return Api().post('schedule/add', credentials)
   }
 }

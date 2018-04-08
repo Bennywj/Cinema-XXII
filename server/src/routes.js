@@ -6,6 +6,7 @@ const TheaterController = require('./controllers/TheaterController')
 const ProfileController = require('./controllers/ProfileController')
 const PlazaController = require('./controllers/PlazaController')
 const MovieController = require('./controllers/MovieController')
+const ScheduleController = require('./controllers/ScheduleController')
 
 module.exports = (app) => {
   app.get('/', (req, res) => {
@@ -46,4 +47,9 @@ module.exports = (app) => {
     MovieController.getMovie)
   app.post('/movie/add',
     MovieController.addMovie)
+  // schedule
+  app.get('/schedule?:plaza_id?:date',
+    ScheduleController.getScheduleByPlaza)
+  app.post('/schedule/add',
+    ScheduleController.addSchedule)
 }
