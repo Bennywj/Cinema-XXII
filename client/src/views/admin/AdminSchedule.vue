@@ -51,7 +51,7 @@
             <b-col>
               <b-row>
                 <b-col v-for="schedule in movie.schedules" :key="schedule.id">
-                  <div class="showtime p-2 m-2" align="center">
+                  <div class="showtime p-2 m-1" align="center">
                     <b>
                     {{schedule.start_hour}} ({{schedule.type}})
                     Rp {{schedule.price}}
@@ -69,6 +69,7 @@
 
 <script>
 import Sidebar from '@/components/Sidebar.vue'
+import CustomDate from '@/extensions/CustomDate'
 import AuthenthicationService from '@/services/AuthenticationService'
 export default {
   name: 'Schedule',
@@ -94,6 +95,11 @@ export default {
   },
   async mounted () {
     // get all plaza
+    this.date = CustomDate.getTodayDate()
+    this.plazas.push({
+      value: null,
+      text: 'Please Select a Plaza'
+    })
     const plazaObj = await AuthenthicationService.getPlaza()
     const plazaData = plazaObj.data.plazas
     for (var i = 0; i < plazaData.length; i++) {
@@ -101,6 +107,11 @@ export default {
         value: plazaData[i].id,
         text: plazaData[i].name
       })
+    }
+    if (plazaData.length > 0) {
+      const response = await AuthenthicationService.getScheduleByPlaza(plazaData[0].id, this.date)
+      this.movies = response.data.movies
+      this.plaza_id = plazaData[0].id
     }
   }
 }
@@ -122,7 +133,7 @@ export default {
     color:white;
     background-color: #008FBE;
     height:60px;
-    width:100px;
+    width:110px;
     cursor:pointer
   }
 </style>

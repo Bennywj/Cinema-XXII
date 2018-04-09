@@ -21,7 +21,7 @@ module.exports = {
       }
       
     } catch(err) {
-      returnJsonError(res,'missing field name or city or street or phone_number',400)
+      returnJsonError(res,'missing field name or city or street or phone_number',403)
     }
   },
   async getPlaza (req, res) {
@@ -31,5 +31,23 @@ module.exports = {
     } catch(err) {
       returnJsonError(res,'server error.',400)
     }
-  }
+  },
+  async getPlazaById (req, res) {
+    const { id } = req.params;
+    try {
+      const plazaById = await Plaza.findOne({
+        where: {
+          id:id
+        }
+      })
+      if  (plazaById) {
+        returnJsonResponse(res,{plaza:plazaById})
+      }
+      else {
+        returnJsonError(res,'Plaza with id ' + id + ' not found in our server !!',403)
+      }
+    } catch(err) {
+      returnJsonError(res,'server error.',500)
+    }
+  } 
 }

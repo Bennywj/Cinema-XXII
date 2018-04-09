@@ -32,4 +32,7 @@ export default {
   .carousel-caption {
       background: rgba(0, 0, 0, 0.45);
   }
+  a {
+    text-decoration: none;
+  }
 </style>

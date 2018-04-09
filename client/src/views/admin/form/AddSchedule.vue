@@ -69,6 +69,7 @@
 
 <script>
 import Sidebar from '@/components/Sidebar.vue'
+import CustomDate from '@/extensions/CustomDate'
 import AuthenthicationService from '@/services/AuthenticationService'
 export default {
   name: 'AddSchedule',
@@ -126,6 +127,7 @@ export default {
     }
   },
   async mounted () {
+    this.date = CustomDate.getTodayDate()
     // get all movie
     const movieObj = await AuthenthicationService.getMovie()
     const movieData = movieObj.data.movies

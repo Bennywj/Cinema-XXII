@@ -39,7 +39,9 @@ module.exports = (app) => {
     ProfileController.uploadProfile)
   // plaza
   app.get('/plaza',
-    PlazaController.getPlaza)
+    PlazaController.getPlaza),
+  app.get('/plaza/:id',
+    PlazaController.getPlazaById)
   app.post('/plaza/add',
     PlazaController.addPlaza),
   // movies

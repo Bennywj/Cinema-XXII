@@ -3,12 +3,15 @@ import Router from 'vue-router'
 import Dashboard from '@/views/Dashboard'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
-import Genre from '@/views/admin/Genre'
-import Plaza from '@/views/admin/Plaza'
-import Movie from '@/views/admin/Movie'
-import Schedule from '@/views/admin/Schedule'
+import Plaza from '@/views/Plaza'
+import Movie from '@/views/Movie'
+import PlazaSchedule from '@/views/PlazaSchedule'
 
-// form ui
+// admin view
+
+import AdminGenre from '@/views/admin/AdminGenre'
+import AdminSchedule from '@/views/admin/AdminSchedule'
+
 import AddGenre from '@/views/admin/form/AddGenre'
 import AddPlaza from '@/views/admin/form/AddPlaza'
 import AddMovie from '@/views/admin/form/AddMovie'
@@ -43,7 +46,7 @@ export default new Router({
     {
       path: '/admin/genre',
       name: 'adminGenre',
-      component: Genre
+      component: AdminGenre
     },
     {
       path: '/admin/genre/add',
@@ -56,6 +59,7 @@ export default new Router({
       name: 'generateSeat',
       component: GenerateSeat
     },
+    // theater url
     {
       path: '/admin/theater/generateTheater',
       name: 'generateTheater',
@@ -63,8 +67,8 @@ export default new Router({
     },
     // plaza url
     {
-      path: '/admin/plaza',
-      name: 'adminPlaza',
+      path: '/plazas',
+      name: 'plaza',
       component: Plaza
     },
     {
@@ -74,8 +78,8 @@ export default new Router({
     },
     // movie url
     {
-      path: '/admin/movie',
-      name: 'adminMovie',
+      path: '/movies',
+      name: 'movie',
       component: Movie
     },
     {
@@ -83,11 +87,17 @@ export default new Router({
       name: 'addMovie',
       component: AddMovie
     },
-    // Schedule url
+    // plaza schedule url
+    {
+      path: '/plazas/:id/schedule',
+      name: 'plazaSchedule',
+      component: PlazaSchedule
+    },
+    // admin schedule url
     {
       path: '/admin/schedule',
       name: 'adminSchedule',
-      component: Schedule
+      component: AdminSchedule
     },
     {
       path: '/admin/schedule/add',

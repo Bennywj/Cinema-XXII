@@ -35,6 +35,9 @@ export default {
   getPlaza () {
     return Api().get('plaza')
   },
+  getPlazaById (plazaId) {
+    return Api().get('plaza/' + plazaId)
+  },
   // Movie
   getMovie () {
     return Api().get('movie')

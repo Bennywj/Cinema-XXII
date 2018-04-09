@@ -82,6 +82,7 @@
 
 <script>
 import Sidebar from '@/components/Sidebar.vue'
+import CustomDate from '@/extensions/CustomDate'
 import AuthenthicationService from '@/services/AuthenticationService'
 export default {
   name: 'AddMovie',
@@ -147,6 +148,7 @@ export default {
     }
   },
   async mounted () {
+    this.release_date = CustomDate.getTodayDate()
     const genreObj = await AuthenthicationService.getGenre()
     const genreData = genreObj.data.genres
     for (var i = 0; i < genreData.length; i++) {

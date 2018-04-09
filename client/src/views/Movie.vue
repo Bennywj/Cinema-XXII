@@ -1,17 +1,19 @@
 <template>
   <div class="p-4">
     <b-row>
-      <b-col cols="2">
-        <Sidebar/>
+      <b-col cols="2" v-if="$store.state.user">
+        <Sidebar v-if="$store.state.user['role'] == 'admin'"/>
       </b-col>
       <b-col>
         <b-row class="pb-3">
           <b-col>
             <h3>Movies</h3>
           </b-col>
-          <b-col align="right">
-            <b-button variant="success" :to="{ name: 'addMovie'}"><icon name="plus-circle" class="mr-3"></icon>Add Movie</b-button>
-          </b-col>
+          <div v-if="$store.state.user">
+            <b-col align="right" v-if="$store.state.user['role'] == 'admin'">
+              <b-button variant="success" :to="{ name: 'addMovie'}"><icon name="plus-circle" class="mr-3"></icon>Add Movie</b-button>
+            </b-col>
+          </div>
         </b-row>
         <b-card
             tag="article">
