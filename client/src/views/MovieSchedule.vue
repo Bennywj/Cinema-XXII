@@ -43,10 +43,12 @@
               <b-row>
                 <b-col v-for="schedule in plaza.schedules" :key="schedule.id">
                   <div class="showtime p-2 m-1" align="center">
-                    <b>
-                    {{schedule.start_hour}} ({{schedule.type}})
-                    Rp {{schedule.price}}
-                    </b>
+                    <router-link :to="{ name: 'seatSelection', params: { id: schedule.id } }" style="color:white;text-decoration:none">
+                      <b>
+                      {{schedule.start_hour}} ({{schedule.type}})
+                      Rp {{schedule.price}}
+                      </b>
+                    </router-link>
                   </div>
                 </b-col>
               </b-row>
@@ -71,7 +73,7 @@ export default {
     },
     async filterSchedule () {
       const response = await AuthenthicationService.getScheduleByMovie(this.movie_id, this.date)
-      this.movies = response.data.movies
+      this.plazas = response.data.plazas
     }
   },
   data () {

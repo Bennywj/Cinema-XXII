@@ -1,12 +1,12 @@
 const AuthenticationController = require('./controllers/AuthenticationController')
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
 const GenreController = require('./controllers/GenreController')
-const SeatController = require('./controllers/SeatController')
 const TheaterController = require('./controllers/TheaterController')
 const ProfileController = require('./controllers/ProfileController')
 const PlazaController = require('./controllers/PlazaController')
 const MovieController = require('./controllers/MovieController')
 const ScheduleController = require('./controllers/ScheduleController')
+const TicketController = require('./controllers/TicketController')
 
 module.exports = (app) => {
   app.get('/', (req, res) => {
@@ -22,11 +22,6 @@ module.exports = (app) => {
     GenreController.getGenre)
   app.post('/genre/add',
     GenreController.addGenre)
-  // seat
-  app.get('/seat',
-    SeatController.getSeat)
-  app.post('/seat/generate',
-    SeatController.generateSeat)
   // theater
   app.get('/theater',
     TheaterController.getTheater)
@@ -56,7 +51,13 @@ module.exports = (app) => {
     ScheduleController.getScheduleByMovie)
   app.get('/plaza/:plaza_id/schedule?:date',
     ScheduleController.getScheduleByPlaza)
-  
   app.post('/schedule/add',
     ScheduleController.addSchedule)
+  app.get('/schedule/:id/tickets',
+    ScheduleController.getScheduleTicket)
+  app.get('/schedule/:id',
+    ScheduleController.getScheduleById)
+  // ticket
+  app.post('/ticket',
+    TicketController.buyTicket)
 }

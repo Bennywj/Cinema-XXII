@@ -7,6 +7,7 @@ import Plaza from '@/views/Plaza'
 import Movie from '@/views/Movie'
 import PlazaSchedule from '@/views/PlazaSchedule'
 import MovieSchedule from '@/views/MovieSchedule'
+import SeatSelection from '@/views/SeatSelection'
 
 // admin view
 
@@ -17,7 +18,6 @@ import AddGenre from '@/views/admin/form/AddGenre'
 import AddPlaza from '@/views/admin/form/AddPlaza'
 import AddMovie from '@/views/admin/form/AddMovie'
 import AddSchedule from '@/views/admin/form/AddSchedule'
-import GenerateSeat from '@/views/admin/form/GenerateSeat'
 import GenerateTheater from '@/views/admin/form/GenerateTheater'
 
 Vue.use(Router)
@@ -53,12 +53,6 @@ export default new Router({
       path: '/admin/genre/add',
       name: 'addGenre',
       component: AddGenre
-    },
-    // seat url
-    {
-      path: '/admin/seat/generateSeat',
-      name: 'generateSeat',
-      component: GenerateSeat
     },
     // theater url
     {
@@ -110,6 +104,12 @@ export default new Router({
       path: '/admin/schedule/add',
       name: 'addSchedule',
       component: AddSchedule
+    },
+    // seat selection
+    {
+      path: '/seatSelection/schedules/:id',
+      name: 'seatSelection',
+      component: SeatSelection
     }
   ]
 })

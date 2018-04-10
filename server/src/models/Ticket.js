@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) =>
       type: DataTypes.STRING,
       allowNull: false
     },
-    seat_id: {
+    seat_no: {
       type: DataTypes.STRING,
       allowNull: false
     }

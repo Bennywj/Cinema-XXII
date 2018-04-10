@@ -69,7 +69,17 @@ export default {
   getScheduleByMovie (movieId, date) {
     return Api().get('movie/' + movieId + '/schedule?date=' + date)
   },
+  getScheduleTickets (scheduleId) {
+    return Api().get('schedule/' + scheduleId + '/tickets')
+  },
+  getScheduleById (scheduleId) {
+    return Api().get('schedule/' + scheduleId)
+  },
   addSchedule (credentials) {
     return Api().post('schedule/add', credentials)
+  },
+  // tickets
+  buyTicket (credentials) {
+    return Api().post('/ticket', credentials)
   }
 }

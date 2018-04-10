@@ -1,6 +1,8 @@
 const {Schedule} = require('../models')
 const {Movie} = require('../models')
 const {Plaza} = require('../models')
+const {Ticket} = require('../models')
+const {Theater} = require('../models')
 const { returnJsonError } = require('../controllers/GlobalController');
 const { returnJsonResponse } = require('../controllers/GlobalController');
 
@@ -108,5 +110,50 @@ module.exports = {
     } catch(err) {
       returnJsonError(res,'server error.',400)
     }
-  }
+  },
+  async getScheduleTicket (req, res) {
+    const { id } = req.params;
+    try {
+      const scheduleTicket = await Ticket.findAll({
+        where: {
+          schedule_id:id
+        }
+      })
+      returnJsonResponse(res,{tickets:scheduleTicket})
+    } catch(err) {
+      returnJsonError(res,'server error.',500)
+    }
+  },
+  async getScheduleById (req, res) {
+    const { id } = req.params;
+    try {
+      const scheduleById = await Schedule.findOne({
+        where: {
+          id:id
+        }
+      })
+      var scheduleJson = scheduleById.toJSON()
+      scheduleJson["movie"] = await Movie.findOne({
+        where: {
+          id: scheduleJson.movie_id
+        }
+      })
+      delete scheduleJson.movie_id
+      scheduleJson["plaza"] = await Plaza.findOne({
+        where: {
+          id: scheduleJson.plaza_id
+        }
+      })
+      delete scheduleJson.plaza_id
+       scheduleJson["theater"] = await Theater.findOne({
+        where: {
+          id: scheduleJson.theater_id
+        }
+      })
+      delete scheduleJson.theater_id
+      returnJsonResponse(res,{schedule:scheduleJson})
+    } catch(err) {
+      returnJsonError(res,'server error.',500)
+    }
+  } 
 }

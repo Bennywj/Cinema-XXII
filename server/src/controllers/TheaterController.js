@@ -8,7 +8,7 @@ module.exports = {
     try {
       var body = [];
       for(var i=1;i<=10;i++) {
-        await Theater.create({name:'Theater-'+i})
+        await Theater.create({name:'Cinema-'+i})
       }
       returnJsonResponse(res,{message:'10 Theaters are sucessfully added'})
     } catch(err) {
