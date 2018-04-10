@@ -4,7 +4,7 @@
       <b-col>
         <b-row class="pb-3">
           <b-col>
-            <h3>{{plaza_name}}'s Schedule</h3>
+            <h3>{{movie_name}}'s Schedule</h3>
           </b-col>
         </b-row>
         <b-form @submit="filterSchedule">
@@ -23,7 +23,7 @@
         <b-row>
           <b-col align="center">
             <div class="head">
-              MOVIES
+              PLAZAS
             </div>
           </b-col>
           <b-col align="center">
@@ -34,14 +34,14 @@
         </b-row>
         <b-card
             tag="article" class="mb-3"
-             v-for="movie in movies" :key="movie.id">
+             v-for="plaza in plazas" :key="plaza.id">
           <b-row>
             <b-col>
-              <b class="titleMovie">{{movie.name}}</b>
+              <b class="titleMovie">{{plaza.name}}</b>
             </b-col>
             <b-col>
               <b-row>
-                <b-col v-for="schedule in movie.schedules" :key="schedule.id">
+                <b-col v-for="schedule in plaza.schedules" :key="schedule.id">
                   <div class="showtime p-2 m-1" align="center">
                     <b>
                     {{schedule.start_hour}} ({{schedule.type}})
@@ -62,7 +62,7 @@
 import CustomDate from '@/extensions/CustomDate'
 import AuthenthicationService from '@/services/AuthenticationService'
 export default {
-  name: 'PlazaSchedule',
+  name: 'MovieSchedule',
   components: {
   },
   methods: {
@@ -70,26 +70,26 @@ export default {
       this.$router.push(route)
     },
     async filterSchedule () {
-      const response = await AuthenthicationService.getScheduleByPlaza(this.plaza_id, this.date)
+      const response = await AuthenthicationService.getScheduleByMovie(this.movie_id, this.date)
       this.movies = response.data.movies
     }
   },
   data () {
     return {
       date: null,
-      plaza: null,
-      plaza_id: this.$route.params.id,
-      plaza_name: null,
-      movies: []
+      movie: null,
+      movie_id: this.$route.params.id,
+      movie_name: null,
+      plazas: []
     }
   },
   async mounted () {
     this.date = CustomDate.getTodayDate()
-    const movieResponse = await AuthenthicationService.getScheduleByPlaza(this.plaza_id, this.date)
-    const plazaResponse = await AuthenthicationService.getPlazaById(this.plaza_id)
-    this.movies = movieResponse.data.movies
-    this.plaza = plazaResponse.data.plaza
-    this.plaza_name = plazaResponse.data.plaza.name
+    const plazaResponse = await AuthenthicationService.getScheduleByMovie(this.movie_id, this.date)
+    const movieResponse = await AuthenthicationService.getMovieById(this.movie_id)
+    this.plazas = plazaResponse.data.plazas
+    this.movie = movieResponse.data.movies
+    this.movie_name = movieResponse.data.movie.name
   }
 }
 </script>

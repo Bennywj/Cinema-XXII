@@ -47,11 +47,16 @@ module.exports = (app) => {
   // movies
   app.get('/movie',
     MovieController.getMovie)
+  app.get('/movie/:id',
+    MovieController.getMovieById)
   app.post('/movie/add',
     MovieController.addMovie)
   // schedule
-  app.get('/schedule?:plaza_id?:date',
+  app.get('/movie/:movie_id/schedule?:date',
+    ScheduleController.getScheduleByMovie)
+  app.get('/plaza/:plaza_id/schedule?:date',
     ScheduleController.getScheduleByPlaza)
+  
   app.post('/schedule/add',
     ScheduleController.addSchedule)
 }

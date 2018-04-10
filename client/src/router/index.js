@@ -6,6 +6,7 @@ import Register from '@/views/Register'
 import Plaza from '@/views/Plaza'
 import Movie from '@/views/Movie'
 import PlazaSchedule from '@/views/PlazaSchedule'
+import MovieSchedule from '@/views/MovieSchedule'
 
 // admin view
 
@@ -92,6 +93,12 @@ export default new Router({
       path: '/plazas/:id/schedule',
       name: 'plazaSchedule',
       component: PlazaSchedule
+    },
+    // movie schedule url
+    {
+      path: '/movies/:id/schedule',
+      name: 'movieSchedule',
+      component: MovieSchedule
     },
     // admin schedule url
     {

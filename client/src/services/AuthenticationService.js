@@ -42,6 +42,9 @@ export default {
   getMovie () {
     return Api().get('movie')
   },
+  getMovieById (movieId) {
+    return Api().get('movie/' + movieId)
+  },
   addMovie (credentials) {
     return Api().post('movie/add', credentials)
   },
@@ -61,7 +64,10 @@ export default {
   },
   // Schedules
   getScheduleByPlaza (plazaId, date) {
-    return Api().get('schedule?plaza_id=' + plazaId + '&date=' + date)
+    return Api().get('plaza/' + plazaId + '/schedule?date=' + date)
+  },
+  getScheduleByMovie (movieId, date) {
+    return Api().get('movie/' + movieId + '/schedule?date=' + date)
   },
   addSchedule (credentials) {
     return Api().post('schedule/add', credentials)

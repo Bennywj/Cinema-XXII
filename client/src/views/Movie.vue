@@ -19,7 +19,9 @@
             tag="article">
           <b-row>
             <b-col  class="mb-3" v-for="movie in movies" :key="movie.id" align="center">
-              <img :src="movie.image" style="height:300px;width:193px"/>
+              <router-link :to="{ name: 'movieSchedule', params: { id: movie.id } }">
+                <img :src="movie.image" style="height:300px;width:193px"/>
+              </router-link>
             </b-col>
           </b-row>
         </b-card>

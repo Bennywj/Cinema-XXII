@@ -31,5 +31,23 @@ module.exports = {
     } catch(err) {
       returnJsonError(res,'server error.',400)
     }
-  }
+  },
+  async getMovieById (req, res) {
+    const { id } = req.params;
+    try {
+      const movieById = await Movie.findOne({
+        where: {
+          id:id
+        }
+      })
+      if  (movieById) {
+        returnJsonResponse(res,{movie:movieById})
+      }
+      else {
+        returnJsonError(res,'Movie with id ' + id + ' not found in our server !!',403)
+      }
+    } catch(err) {
+      returnJsonError(res,'server error.',500)
+    }
+  } 
 }
