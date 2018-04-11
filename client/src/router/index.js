@@ -8,7 +8,7 @@ import Movie from '@/views/Movie'
 import PlazaSchedule from '@/views/PlazaSchedule'
 import MovieSchedule from '@/views/MovieSchedule'
 import SeatSelection from '@/views/SeatSelection'
-
+import SuccesfulPayment from '@/views/SuccessPayment'
 // admin view
 
 import AdminGenre from '@/views/admin/AdminGenre'
@@ -42,7 +42,8 @@ export default new Router({
     // genre url
     {
       path: '/admin',
-      redirect: '/admin/genre'
+      redirect: '/admin/genre',
+      name: 'admin'
     },
     {
       path: '/admin/genre',
@@ -110,6 +111,12 @@ export default new Router({
       path: '/seatSelection/schedules/:id',
       name: 'seatSelection',
       component: SeatSelection
+    },
+    // success payment
+    {
+      path: '/succesfulPayment',
+      name: 'succesfulPayment',
+      component: SuccesfulPayment
     }
   ]
 })

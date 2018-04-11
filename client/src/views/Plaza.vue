@@ -1,8 +1,8 @@
 <template>
   <div class="p-4">
     <b-row>
-      <b-col cols="2" v-if="$store.state.user">
-        <Sidebar v-if="$store.state.user['role'] == 'admin'"/>
+      <b-col cols="2" v-if="$store.state.user && $store.state.isAdmin">
+        <Sidebar/>
       </b-col>
       <b-col>
         <b-row class="pb-3">

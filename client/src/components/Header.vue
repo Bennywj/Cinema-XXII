@@ -22,6 +22,12 @@
               <icon name="user-plus" class="mr-1"></icon>
               Register
             </b-nav-item>
+            <b-nav-item href="#" :to="{ name: 'admin'}" v-if="$store.state.isUserLoggedIn">
+              <div v-if="$store.state.user['role'] == 'admin'">
+                <icon name="cogs" class="mr-1"></icon>
+                Admin Configuration
+              </div>
+            </b-nav-item>
             <b-nav-item href="#" @click="logout" v-if="$store.state.isUserLoggedIn">
               <icon name="sign-out" class="mr-1"></icon>
               Logout

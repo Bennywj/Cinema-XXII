@@ -89,7 +89,7 @@
               Showtime
             </b-col>:
             <b-col>
-              {{showHour}} | {{showDate}}
+              {{showHour}} {{showDate}}
             </b-col>
           </b-row>
           <b-row class="mb-2">
@@ -145,9 +145,70 @@
             </b-col>
           </b-row>
         </b-card>
-        <b-button variant="success" class="mt-3" @click="payment">
-          PROCEED TO PAYMENT
-        </b-button>
+        <div>
+          <b-button variant="success" class="mt-3" :to="{ name: 'login'}" v-if="!this.$store.state.isUserLoggedIn">
+            PROCEED TO PAYMENT
+          </b-button>
+          <b-button variant="success" class="mt-3" v-b-modal.modal-center v-if="this.$store.state.isUserLoggedIn">
+            PROCEED TO PAYMENT
+          </b-button>
+          <!-- Modal Component -->
+          <b-modal id="modal-center" centered @ok=payment>
+            <b-card
+                class="mt-3"
+                header="PAYMENT DETAIL"
+                header-tag="header">
+              <b-row class="mb-2">
+                <b-col cols="4">
+                  Total Seat(s)
+                </b-col>:
+                <b-col>
+                  {{total_seat}}
+                </b-col>
+              </b-row>
+              <b-row class="mb-2">
+                <b-col cols="4">
+                  Price per Ticket
+                </b-col>:
+                <b-col v-if="schedule">
+                   Rp. {{schedule["price"]}}
+                </b-col>
+              </b-row>
+              <b-row class="mb-2">
+                <b-col cols="4">
+                  Booking Fee
+                </b-col>:
+                <b-col>
+                  Rp. 10000
+                </b-col>
+              </b-row>
+              <b-row class="mb-2">
+                <b-col cols="4">
+                  <b>Your Balance</b>
+                </b-col>:
+                <b-col v-if="schedule">
+                  <b>Rp. {{userCurrentPoint}}</b>
+                </b-col>
+              </b-row>
+              <b-row class="mb-2">
+                <b-col cols="4">
+                  <b>Total Price</b>
+                </b-col>:
+                <b-col v-if="schedule">
+                  <b style="color:red">Rp. {{schedule["price"]*total_seat+10000}}</b>
+                </b-col>
+              </b-row>
+              <b-row class="mb-2">
+                <b-col cols="4">
+                  <b>Remain</b>
+                </b-col>:
+                <b-col v-if="schedule">
+                  <b>Rp. {{userCurrentPoint - schedule["price"]*total_seat}}</b>
+                </b-col>
+              </b-row>
+            </b-card>
+          </b-modal>
+        </div>
       </b-col>
     </b-row>
     </div>
@@ -177,7 +238,7 @@ export default {
       var monthIndex = date.getMonth()
       var year = date.getFullYear()
 
-      return daysNames[date.getDay()] + ' | ' + monthNames[monthIndex] + ' ' + day + ', ' + year
+      return ' | ' + daysNames[date.getDay()] + ' | ' + monthNames[monthIndex] + ' ' + day + ', ' + year
     },
     amPmConvert (time) {
       // Check correct time format and split into components
@@ -202,6 +263,9 @@ export default {
       }
     },
     async payment () {
+      if (!this.$store.state.isUserLoggedIn) {
+        this.$router.push({ name: 'login' })
+      }
       var selectedSeat = []
       for (var i = 0; i < 10; i++) {
         for (var j = 0; j < 10; j++) {
@@ -211,6 +275,7 @@ export default {
         }
       }
       var body = {
+        user_id: this.userCurrentId,
         schedule_id: this.schedule_id,
         seats: selectedSeat
       }
@@ -220,6 +285,7 @@ export default {
         this.showError = false
         this.success = 'your payment is successful.'
         this.showSuccess = true
+        this.$router.push({ name: 'succesfulPayment' })
       } catch (err) {
         this.error = err.response.data.error
         this.showError = true
@@ -250,10 +316,16 @@ export default {
       schedule_id: this.$route.params.id,
       schedule: null,
       showHour: null,
-      showDate: null
+      showDate: null,
+      userCurrentPoint: null,
+      userCurrentId: null
     }
   },
   async mounted () {
+    if (this.$store.state.isUserLoggedIn) {
+      this.userCurrentPoint = this.$store.state.user.point
+      this.userCurrentId = this.$store.state.user.id
+    }
     const takenSeats = await AuthenthicationService.getScheduleTickets(this.schedule_id)
     const scheduleResponse = await AuthenthicationService.getScheduleById(this.schedule_id)
     this.schedule = scheduleResponse.data.schedule

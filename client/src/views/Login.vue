@@ -55,7 +55,7 @@ export default {
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
         this.error = null
-        this.$router.push('/')
+        this.$router.go(-1)
       } catch (err) {
         this.showDismissibleAlert = true
         this.error = err.response.data.error

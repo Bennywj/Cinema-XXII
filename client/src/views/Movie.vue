@@ -1,8 +1,8 @@
 <template>
   <div class="p-4">
     <b-row>
-      <b-col cols="2" v-if="$store.state.user">
-        <Sidebar v-if="$store.state.user['role'] == 'admin'"/>
+      <b-col cols="2" v-if="$store.state.user && $store.state.isAdmin">
+        <Sidebar/>
       </b-col>
       <b-col>
         <b-row class="pb-3">
@@ -18,7 +18,7 @@
         <b-card
             tag="article">
           <b-row>
-            <b-col  class="mb-3" v-for="movie in movies" :key="movie.id" align="center">
+            <b-col  class="mb-4" v-for="movie in movies" :key="movie.id" align="center">
               <router-link :to="{ name: 'movieSchedule', params: { id: movie.id } }">
                 <img :src="movie.image" style="height:300px;width:193px"/>
               </router-link>

@@ -72,7 +72,7 @@ export default {
         await AuthenthicationService.register(body)
         this.error = null
         this.showError = false
-        this.success = this.form.email + 'is successfully registered.'
+        this.success = this.form.email + ' is successfully registered.'
         this.showSuccess = true
         this.form.email = ''
         this.form.password = ''
