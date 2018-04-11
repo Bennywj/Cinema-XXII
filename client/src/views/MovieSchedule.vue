@@ -106,7 +106,6 @@ export default {
   }
   .titleMovie {
     color: #008FBE;
-    cursor:pointer
   }
   .showtime {
     color:white;

@@ -5,10 +5,12 @@ import Login from '@/views/Login'
 import Register from '@/views/Register'
 import Plaza from '@/views/Plaza'
 import Movie from '@/views/Movie'
+import MovieDetail from '@/views/MovieDetail'
 import PlazaSchedule from '@/views/PlazaSchedule'
 import MovieSchedule from '@/views/MovieSchedule'
 import SeatSelection from '@/views/SeatSelection'
 import SuccesfulPayment from '@/views/SuccessPayment'
+
 // admin view
 
 import AdminGenre from '@/views/admin/AdminGenre'
@@ -77,6 +79,11 @@ export default new Router({
       path: '/movies',
       name: 'movie',
       component: Movie
+    },
+    {
+      path: '/movies/:id',
+      name: 'movieDetail',
+      component: MovieDetail
     },
     {
       path: '/admin/movie/add',

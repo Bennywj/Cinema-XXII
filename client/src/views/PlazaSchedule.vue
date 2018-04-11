@@ -37,7 +37,7 @@
              v-for="movie in movies" :key="movie.id">
           <b-row>
             <b-col>
-              <b class="titleMovie">{{movie.name}}</b>
+              <b class="titleMovie" @click="navigateTo(movie.id)">{{movie.name}}</b>
             </b-col>
             <b-col>
               <b-row>
@@ -68,8 +68,8 @@ export default {
   components: {
   },
   methods: {
-    navigateTo (route) {
-      this.$router.push(route)
+    navigateTo (movieId) {
+      this.$router.push({ name: 'movieDetail', params: { id: movieId } })
     },
     async filterSchedule () {
       const response = await AuthenthicationService.getScheduleByPlaza(this.plaza_id, this.date)
