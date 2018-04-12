@@ -22,7 +22,9 @@ export default new Vuex.Store({
     },
     setUser (state, user) {
       state.user = user
-      state.isAdmin = (user.role === 'admin')
+      if (user) {
+        state.isAdmin = (user.role === 'admin')
+      }
     }
   },
   actions: {

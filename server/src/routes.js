@@ -17,6 +17,8 @@ module.exports = (app) => {
     AuthenticationController.register)
   app.post('/login',
     AuthenticationController.login)
+  app.get('/user/:user_id/history',
+    AuthenticationController.getUserHistory)
   // genre
   app.get('/genre',
     GenreController.getGenre)

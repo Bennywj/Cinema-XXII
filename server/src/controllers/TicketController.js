@@ -42,17 +42,17 @@ module.exports = {
       })
       
       var uniqueId = makeid()
-      var uniqueOrderId = await Order.findOne({
-        where: {
-          order_id: uniqueId
+      for(var i=0;i<100;i++) {
+        var uniqueOrderId = await Order.findOne({
+          where: {
+            order_id: uniqueId
+          }
+        })
+        if(!uniqueOrderId) {
+          break;
         }
-      })
-      
-      
-      if(uniqueOrderId) {
         uniqueId = makeid()
       }
-      
       
       for(var i=0;i<seats.length;i++) {
         const body = {

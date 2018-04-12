@@ -11,6 +11,7 @@
             <b-nav-item href="#" :to="{ name: 'dashboard'}" actives> HOME </b-nav-item>
             <b-nav-item href="#" :to="{ name: 'movie'}">MOVIES</b-nav-item>
             <b-nav-item href="#" :to="{ name: 'plaza'}">PLAZAS</b-nav-item>
+            <b-nav-item href="#" :to="{ name: 'historyOrder'}" v-if="$store.state.isUserLoggedIn">HISTORY</b-nav-item>
           </b-navbar-nav>
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">

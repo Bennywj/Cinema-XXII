@@ -7,6 +7,9 @@ export default {
   login (credentials) {
     return Api().post('login', credentials)
   },
+  getUserHistory (userId) {
+    return Api().get('/user/' + userId + '/history')
+  },
   // genre
   addGenre (credentials) {
     return Api().post('genre/add', credentials)

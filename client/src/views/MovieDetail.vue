@@ -26,7 +26,7 @@
               </b-row>
               <b-row class="mt-3 mb-3">
                 <b-col cols="3">Release Date</b-col>:
-                <b-col cols="8">{{movie.release_date}}</b-col>
+                <b-col cols="8">{{movie_date}}</b-col>
               </b-row>
               <b-row class="mt-3 mb-3">
                 <b-col cols="3">Cast Star</b-col>:
@@ -73,12 +73,32 @@ export default {
   components: {
   },
   methods: {
+    formatDate (dateString) {
+      var monthNames = [
+        'January', 'February', 'March',
+        'April', 'May', 'June', 'July',
+        'August', 'September', 'October',
+        'November', 'December'
+      ]
+      var daysNames = [
+        'Sunday', 'Monday', 'Tuesday',
+        'Wednesday', 'Thursday', 'Friday',
+        'Saturday'
+      ]
+      var date = new Date(dateString)
+      var day = date.getDate()
+      var monthIndex = date.getMonth()
+      var year = date.getFullYear()
+
+      return daysNames[date.getDay()] + ', ' + day + ' ' + monthNames[monthIndex] + ' ' + year
+    }
   },
   data () {
     return {
       movie: null,
       movie_id: this.$route.params.id,
-      movie_name: null
+      movie_name: null,
+      movie_date: null
     }
   },
   async mounted () {
@@ -90,6 +110,7 @@ export default {
     movieData['image'] = image
     this.movie = movieData
     this.movie_name = movieData.name
+    this.movie_date = this.formatDate(movieData.release_date)
   }
 }
 </script>

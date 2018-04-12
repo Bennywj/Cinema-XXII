@@ -10,6 +10,7 @@ import PlazaSchedule from '@/views/PlazaSchedule'
 import MovieSchedule from '@/views/MovieSchedule'
 import SeatSelection from '@/views/SeatSelection'
 import SuccesfulPayment from '@/views/SuccessPayment'
+import HistoryOrder from '@/views/HistoryOrder'
 
 // admin view
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: Register
+    },
+    {
+      path: '/user/history',
+      name: 'historyOrder',
+      component: HistoryOrder
     },
     // genre url
     {
