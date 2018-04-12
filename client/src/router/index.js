@@ -11,11 +11,13 @@ import MovieSchedule from '@/views/MovieSchedule'
 import SeatSelection from '@/views/SeatSelection'
 import SuccesfulPayment from '@/views/SuccessPayment'
 import HistoryOrder from '@/views/HistoryOrder'
+import RedeemVoucher from '@/views/RedeemVoucher'
 
 // admin view
 
 import AdminGenre from '@/views/admin/AdminGenre'
 import AdminSchedule from '@/views/admin/AdminSchedule'
+import AdminVoucher from '@/views/admin/AdminVoucher'
 
 import AddGenre from '@/views/admin/form/AddGenre'
 import AddPlaza from '@/views/admin/form/AddPlaza'
@@ -130,6 +132,17 @@ export default new Router({
       path: '/succesfulPayment',
       name: 'succesfulPayment',
       component: SuccesfulPayment
+    },
+    // admin Voucher
+    {
+      path: '/admin/voucher',
+      name: 'adminVoucher',
+      component: AdminVoucher
+    },
+    {
+      path: '/voucher',
+      name: 'redeemVoucher',
+      component: RedeemVoucher
     }
   ]
 })

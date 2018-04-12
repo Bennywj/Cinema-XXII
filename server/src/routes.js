@@ -7,6 +7,7 @@ const PlazaController = require('./controllers/PlazaController')
 const MovieController = require('./controllers/MovieController')
 const ScheduleController = require('./controllers/ScheduleController')
 const TicketController = require('./controllers/TicketController')
+const VoucherController = require('./controllers/VoucherController')
 
 module.exports = (app) => {
   app.get('/', (req, res) => {
@@ -62,4 +63,11 @@ module.exports = (app) => {
   // ticket
   app.post('/ticket',
     TicketController.buyTicket)
+  // Voucher
+  app.get('/voucher',
+    VoucherController.getAllVoucher)
+  app.post('/voucher/generate',
+    VoucherController.generateVoucher)
+  app.post('/voucher/redeem',
+    VoucherController.redeemVoucher)
 }

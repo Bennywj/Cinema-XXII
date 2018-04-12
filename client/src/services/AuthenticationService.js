@@ -84,5 +84,15 @@ export default {
   // tickets
   buyTicket (credentials) {
     return Api().post('/ticket', credentials)
+  },
+  // Voucher
+  getVoucher () {
+    return Api().get('/voucher')
+  },
+  generateVoucher (credentials) {
+    return Api().post('/voucher/generate', credentials)
+  },
+  redeemVoucher (credentials) {
+    return Api().post('/voucher/redeem', credentials)
   }
 }

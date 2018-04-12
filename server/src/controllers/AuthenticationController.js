@@ -108,7 +108,7 @@ module.exports = {
           }
           allHistory.orders[historyIndex].seats.push(ticketOrder.seat_no)
         }
-        res.send(allHistory)
+        returnJsonResponse(res,allHistory)
       }
     } catch(err) {
       returnJsonError(res,'missing id field',403)
