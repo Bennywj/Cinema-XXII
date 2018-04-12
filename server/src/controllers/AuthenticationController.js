@@ -21,7 +21,21 @@ module.exports = {
       returnJsonError(res,'This email has been used.',400)
     }
   },
-    
+  async getUserById (req, res) {
+    try {
+      const {id} = req.params
+      const user = await User.findOne({
+        where: {
+          id:id
+        }
+      })
+      var userJson = user.toJSON()
+      delete userJson.password
+      returnJsonResponse(res,{user:userJson})
+    } catch(err) {
+      returnJsonError(res,'This email has been used.',400)
+    }
+  },
   async login (req, res) {
     try {
       const {email,password} = req.body

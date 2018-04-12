@@ -7,6 +7,9 @@ export default {
   login (credentials) {
     return Api().post('login', credentials)
   },
+  getUserById (userId) {
+    return Api().get('/user/' + userId)
+  },
   getUserHistory (userId) {
     return Api().get('/user/' + userId + '/history')
   },

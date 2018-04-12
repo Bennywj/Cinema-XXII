@@ -13,6 +13,8 @@ module.exports = (app) => {
   app.get('/', (req, res) => {
     res.send('Hello World')
   })
+  app.get('/user/:id', 
+    AuthenticationController.getUserById)
   app.post('/register',
     AuthenticationControllerPolicy.register,
     AuthenticationController.register)
