@@ -20,6 +20,7 @@
     "morgan": "^1.9.0",
     "multer": "^1.3.0",
     "mysql2": "^1.5.3",
+    "nodemailer": "^4.6.4",
     "nodemon": "^1.17.2",
     "path": "^0.12.7",
     "sequelize": "^4.37.4"

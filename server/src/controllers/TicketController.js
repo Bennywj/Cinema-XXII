@@ -1,7 +1,8 @@
-const {Ticket, Schedule, User, Order} = require('../models')
+const {Ticket, Schedule, User, Order,Movie,Plaza} = require('../models')
 
 const { returnJsonError } = require('../controllers/GlobalController');
 const { returnJsonResponse } = require('../controllers/GlobalController');
+const nodemailer = require('nodemailer')
 
 function makeid() {
   var text = "";
@@ -31,6 +32,18 @@ module.exports = {
       const scheduleObj = await Schedule.findOne({
         where: {
           id: schedule_id
+        }
+      })
+      
+      const plazaObj = await Plaza.findOne({
+        where: {
+          id: scheduleObj.plaza_id
+        }
+      })
+      
+      const movieObj = await Movie.findOne({
+        where: {
+          id: scheduleObj.movie_id
         }
       })
       
@@ -67,7 +80,50 @@ module.exports = {
         }
         await Order.create(orderBody)
       }
-      returnJsonResponse(res,{message:'your payment is successful'})
+
+      let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        port: 25,
+        secure: false, // true for 465, false for other ports
+        auth: {
+            user: 'cinemaxxii1234@gmail.com', // generated ethereal user
+            pass: 'APAkabar1234' // generated ethereal password
+        },
+        tls: {
+          rejectUnauthorized: false
+        }
+      });
+  
+      // setup email data with unicode symbols
+      let mailOptions = {
+          from: '"Cinema XXII" <admin@cinemaxxii.com>', // sender address
+          to: userObj.email, // list of receivers
+          subject: 'Order Confirmation', // Subject line
+          html: `
+            <p>  
+              Thank you for choosing Cinema XXII. Your transaction has been processed successfully.
+            </p>
+            <p>
+              Please show this email order confirmation to collect your tickets from the TIXX Counter
+            </p>
+            <b/>
+            <h3 style='background-color:#C25219;color:white;text-align:center'>YOU ARE WATCHING</h3>
+            <p>Booking Id  : `+uniqueId+`</p>
+            <p>Movie Title : `+movieObj.name+`</p>
+            <p>Cinema      : `+plazaObj.name+`</p>
+          ` 
+          // html body
+      };
+
+      // send mail with defined transport object
+      transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+              returnJsonError(res,error,400)
+          }
+          returnJsonResponse(res,{message:'your payment is successful'})
+          // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+          // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+      })
     } catch(err) {
       returnJsonError(res,'missing field user_id || schedule_id || seats',400)
     }

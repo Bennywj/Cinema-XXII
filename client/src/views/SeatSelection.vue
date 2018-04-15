@@ -195,7 +195,7 @@
                   <b>Total Price</b>
                 </b-col>:
                 <b-col v-if="schedule">
-                  <b style="color:red">Rp. {{schedule["price"]*total_seat+10000}}</b>
+                  <b >Rp. {{schedule["price"]*total_seat+10000}}</b>
                 </b-col>
               </b-row>
               <b-row class="mb-2">
@@ -203,7 +203,8 @@
                   <b>Remain</b>
                 </b-col>:
                 <b-col v-if="schedule">
-                  <b>Rp. {{userCurrentPoint - schedule["price"]*total_seat}}</b>
+                  <b v-if="userCurrentPoint - (schedule['price']*total_seat + 10000) >= 0">Rp. {{userCurrentPoint - (schedule["price"]*total_seat+10000)}}</b>
+                  <b style="color:red" v-if="userCurrentPoint - (schedule['price']*total_seat + 10000) < 0">Rp. {{userCurrentPoint - (schedule["price"]*total_seat+10000)}}</b>
                 </b-col>
               </b-row>
             </b-card>
@@ -265,6 +266,14 @@ export default {
     async payment () {
       if (!this.$store.state.isUserLoggedIn) {
         this.$router.push({ name: 'login' })
+      } else if (this.userCurrentPoint - (this.schedule['price'] * this.total_seat + 10000) < 0) {
+        if (confirm('Your Balance isn\'t enough. top up your balance now?')) {
+          this.$router.push({ name: 'redeemVoucher' })
+        }
+        return 0
+      } else if (this.total_seat === 0) {
+        alert('please select any seat')
+        return 0
       }
       var selectedSeat = []
       for (var i = 0; i < 10; i++) {

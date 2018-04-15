@@ -5,7 +5,7 @@
       <div>
         <img src="../img/success.png"/>
         <h3>Payment Successfull</h3>
-        <p>Please check your email to get your booking code </p>
+        <p>Please check your email at <b>{{$store.state.user.email}}</b> <br/>to get your booking code </p>
         <b-button variant="success" @click="back">back</b-button>
       </div>
     </b-card>
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import AuthenthicationService from '@/services/AuthenticationService'
 export default {
   name: 'SucessfulPayment',
   data () {
@@ -22,6 +23,10 @@ export default {
     back () {
       this.$router.push({name: 'dashboard'})
     }
+  },
+  async mounted () {
+    const userResponse = await AuthenthicationService.getUserById(this.$store.state.user.id)
+    this.$store.state.user.point = userResponse.data.user.point
   }
 }
 </script>

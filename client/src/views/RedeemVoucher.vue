@@ -75,8 +75,7 @@ export default {
   },
   async mounted () {
     if (this.$store.state.isUserLoggedIn) {
-      const userResponse = await AuthenthicationService.getUserById(this.$store.state.user.id)
-      this.currency = userResponse.data.user.point
+      this.currency = this.$store.state.user.point
     }
   }
 }

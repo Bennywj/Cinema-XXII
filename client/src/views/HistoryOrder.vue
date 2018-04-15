@@ -15,12 +15,17 @@
         </b-row>
         <b-card tag="article">
           <div v-for="(order,index) in orders" :key="order.id">
+            <b-row  class="mt-1 mb-3 mr-1 ml-1">
+              <b-col>
+                 <h3><b>{{order.order_date}}</b></h3>
+              </b-col>
+            </b-row>
             <b-row  class="m-1">
               <b-col>
-                 <h5><b>Movie</b></h5>
+                 <h5>Movie</h5>
               </b-col>:
               <b-col>
-                 <h5><b>{{order.movie_name}}</b></h5>
+                 <h5>{{order.movie_name}}</h5>
               </b-col>
             </b-row>
             <b-row  class="m-1">
@@ -122,6 +127,7 @@ export default {
       for (var i = 0; i < orderData.length; i++) {
         this.orders[i].start_hour = this.amPmConvert(orderData[i].start_hour.substr(0, 5))
         this.orders[i].date = this.formatDate(orderData[i].date)
+        this.orders[i].order_date = this.formatDate(orderData[i].order_date)
       }
     }
   }

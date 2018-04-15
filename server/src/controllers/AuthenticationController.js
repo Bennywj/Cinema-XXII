@@ -77,7 +77,10 @@ module.exports = {
       const orderHistory = await Order.findAll({
         where: {
           user_id:user_id
-        }
+        },
+        order: [
+          ['id', 'DESC']
+        ]
       })
       //if username not found
       if(orderHistory.length == 0) {
@@ -115,6 +118,7 @@ module.exports = {
                 date : scheduleJson.date,
                 price : scheduleJson.price,
                 order_id : orderHistory[i].order_id,
+                order_date :  orderHistory[i].createdAt,
                 seats : []
             }
             allHistory.orders.push(body)
