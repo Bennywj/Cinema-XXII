@@ -60,6 +60,7 @@ export default {
         await AuthenthicationService.redeemVoucher(body)
         const userResponse = await AuthenthicationService.getUserById(this.$store.state.user.id)
         this.currency = userResponse.data.user.point
+        this.$store.state.user.point = userResponse.data.user.point
         this.error = null
         this.showError = false
         this.success = 'Your voucher has been redeemed successfully'

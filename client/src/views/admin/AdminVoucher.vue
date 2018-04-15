@@ -40,11 +40,11 @@ export default {
   },
   methods: {
     async generateVoucher () {
-      console.log('HELLO')
       await AuthenthicationService.generateVoucher({point: this.point})
       const vouchers = await AuthenthicationService.getVoucher()
       const vouchersData = vouchers.data.vouchers
       this.items = []
+      this.point = null
       for (var i = 0; i < vouchersData.length; i++) {
         this.items.push({
           no: i + 1,

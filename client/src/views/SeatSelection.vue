@@ -272,7 +272,7 @@ export default {
         }
         return 0
       } else if (this.total_seat === 0) {
-        alert('please select any seat')
+        alert('please select a seat')
         return 0
       }
       var selectedSeat = []

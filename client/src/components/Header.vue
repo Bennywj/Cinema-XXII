@@ -49,7 +49,7 @@ export default {
     logout () {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
-      this.$router.push('login')
+      this.$router.push({name: 'login'})
     }
   }
 }
