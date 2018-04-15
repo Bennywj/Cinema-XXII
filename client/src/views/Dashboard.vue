@@ -95,10 +95,10 @@ export default {
   },
   methods: {
     onSlideStart (slide) {
-      //this.sliding = false
+      this.sliding = false
     },
     onSlideEnd (slide) {
-      //this.sliding = false
+      this.sliding = false
     }
   }
 }
