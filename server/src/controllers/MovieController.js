@@ -1,4 +1,4 @@
-const {Movie} = require('../models')
+const {Movie,Genre} = require('../models')
 const { returnJsonError } = require('../controllers/GlobalController');
 const { returnJsonResponse } = require('../controllers/GlobalController');
 
@@ -41,7 +41,20 @@ module.exports = {
         }
       })
       if  (movieById) {
-        returnJsonResponse(res,{movie:movieById})
+        const movieById = await Movie.findOne({
+          where: {
+            id:id
+          }
+        })
+        var movieJson = movieById.toJSON()
+        const genreObj = await Genre.findOne({
+          where: {
+            id: movieJson.genre_id
+          }
+        })
+        movieJson["genre"] = genreObj.name
+        delete movieJson.genre_id
+        returnJsonResponse(res,{movie:movieJson})
       }
       else {
         returnJsonError(res,'Movie with id ' + id + ' not found in our server !!',403)

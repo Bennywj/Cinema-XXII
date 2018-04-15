@@ -34,7 +34,7 @@
               </b-row>
               <b-row class="mt-3 mb-3">
                 <b-col cols="3">Genre</b-col>:
-                <b-col cols="8">{{movie.genre_id}}</b-col>
+                <b-col cols="8">{{movie.genre}}</b-col>
               </b-row>
               <b-row class="mt-3 mb-3">
                 <b-col cols="3">Director</b-col>:

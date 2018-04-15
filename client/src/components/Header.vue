@@ -1,11 +1,14 @@
 <template>
-  <b-container style="background-color:white">
+  <div style="background-color:white">
+    <b-container>
     <img
          src="../img/icon.png"
-         height="80px"
+         height="50px"
          @click="navigateTo('/')"
          class="mt-2 mb-2">
+    </b-container>
     <b-navbar toggleable="md" style="background-color:#C25219">
+        <b-container>
         <b-collapse is-nav id="nav_collapse">
           <b-navbar-nav>
             <b-nav-item href="#" :to="{ name: 'dashboard'}" actives> HOME </b-nav-item>
@@ -36,8 +39,9 @@
             </b-nav-item>
           </b-navbar-nav>
         </b-collapse>
+        </b-container>
     </b-navbar>
-  </b-container>
+  </div>
 </template>
 
 <script>
