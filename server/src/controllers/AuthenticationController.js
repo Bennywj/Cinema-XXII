@@ -92,39 +92,37 @@ module.exports = {
         }
 
         for(var i = 0; i<orderHistory.length; i++) {
-          //to find history by id, to make it distinct in json
-          var historyIndex = allHistory.orders.findIndex(x => x.order_id==orderHistory[i].order_id)
-          const ticketOrder = await Ticket.findOne({
+          const ticketOrder = await Ticket.findAll({
             where: {
-              id: orderHistory[i].ticket_id
+              order_id: orderHistory[i].order_id
             }
           })
-          if(historyIndex == -1) {
-            const scheduleById = await Schedule.findOne({
-              where: {
-                id:ticketOrder.schedule_id
-              }
-            })
-            
-            var scheduleJson = scheduleById.toJSON()
-            scheduleJson["movie"] = await Movie.findOne({
-              where: {
-                id: scheduleJson.movie_id
-              }
-            })
-            var body = {
-                movie_name : scheduleJson.movie.name,
-                start_hour : scheduleJson.start_hour,
-                date : scheduleJson.date,
-                price : scheduleJson.price,
-                order_id : orderHistory[i].order_id,
-                order_date :  orderHistory[i].createdAt,
-                seats : []
+          
+          const scheduleById = await Schedule.findOne({
+            where: {
+              id:ticketOrder[0].schedule_id
             }
-            allHistory.orders.push(body)
-            historyIndex = allHistory.orders.length-1
+          })
+         
+          var scheduleJson = scheduleById.toJSON()
+          scheduleJson["movie"] = await Movie.findOne({
+            where: {
+              id: scheduleJson.movie_id
+            }
+          })
+          var body = {
+              movie_name : scheduleJson.movie.name,
+              start_hour : scheduleJson.start_hour,
+              date : scheduleJson.date,
+              price : scheduleJson.price,
+              order_id : orderHistory[i].order_id,
+              order_date :  orderHistory[i].createdAt,
+              seats : []
           }
-          allHistory.orders[historyIndex].seats.push(ticketOrder.seat_no)
+          for(var j = 0; j<ticketOrder.length; j++) {
+              body.seats.push(ticketOrder[j].seat_no)
+          }
+          allHistory.orders.push(body)
         }
         returnJsonResponse(res,allHistory)
       }

@@ -7,5 +7,9 @@ module.exports = (sequelize, DataTypes) =>
     seat_no: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    order_id: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
 })

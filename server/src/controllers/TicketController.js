@@ -55,7 +55,7 @@ module.exports = {
       })
       
       var uniqueId = makeid()
-      for(var i=0;i<100;i++) {
+      for(var i=0;i<10;i++) {
         var uniqueOrderId = await Order.findOne({
           where: {
             order_id: uniqueId
@@ -66,21 +66,22 @@ module.exports = {
         }
         uniqueId = makeid()
       }
+
+      const orderBody = {
+          user_id : user_id,
+          order_id : uniqueId
+        }
+      await Order.create(orderBody)
       
       for(var i=0;i<seats.length;i++) {
         const body = {
           seat_no : seats[i],
-          schedule_id: schedule_id
+          schedule_id: schedule_id,
+          order_id: uniqueId
         }
         const ticketObj = await Ticket.create(body)
-        const orderBody = {
-          user_id : user_id,
-          order_id : uniqueId,
-          ticket_id : ticketObj.id
-        }
-        await Order.create(orderBody)
       }
-
+      
       let transporter = nodemailer.createTransport({
         service: 'gmail',
         port: 25,
