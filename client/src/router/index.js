@@ -25,6 +25,8 @@ import AddMovie from '@/views/admin/form/AddMovie'
 import AddSchedule from '@/views/admin/form/AddSchedule'
 import GenerateTheater from '@/views/admin/form/GenerateTheater'
 
+import EditProfile from '@/views/admin/form/EditProfile'
+
 Vue.use(Router)
 
 export default new Router({
@@ -143,6 +145,11 @@ export default new Router({
       path: '/voucher',
       name: 'redeemVoucher',
       component: RedeemVoucher
+    },
+    {
+      path: '/profile',
+      name: 'editProfile',
+      component: EditProfile
     }
   ]
 })
